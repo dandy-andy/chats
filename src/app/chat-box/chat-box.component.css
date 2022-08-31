@@ -48,6 +48,7 @@
 
 .person {
   display: inline;
+  color: var(--branding--text-color-muted, #666);
   font-size: 0.7rem;
   font-weight: bold;
   text-overflow: ellipsis;
@@ -75,8 +76,8 @@
 
 .new-message-wrapper input {
   background-color: white;
-	border: none;
-	width: calc(100% - 20px);
-	padding: 10px;
-	outline: none;
+  border: none;
+  width: calc(100% - 20px);
+  padding: 10px;
+  outline: none;
 }
