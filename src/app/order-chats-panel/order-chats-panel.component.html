@@ -1,0 +1,44 @@
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let mapItem of conversations | keyvalue">
+    <mat-expansion-panel-header>
+      <div class="conversation-header">
+        <div class="publisher">{{ mapItem.key }}</div>
+        <ng-container
+          *ngIf="
+            mapItem.value.length && mapItem.value[mapItem.value.length - 1];
+            else nolastmessage;
+            let lastMessage
+          "
+        >
+          <div class="message-avatar" [ngStyle]="getAvatarColors(lastMessage)">
+            <div class="message-avatar-text">
+              {{ getAvatarText(lastMessage) }}
+            </div>
+          </div>
+          <div class="timestamp">
+            {{ lastMessage.timestamp | date: 'E' }}
+            {{ lastMessage.timestamp | date: 'shortDate' }}
+            {{ lastMessage.timestamp | date: 'shortTime' }}
+          </div>
+          <div class="message-text">
+            {{ lastMessage.fromUserName }}:
+            {{ lastMessage.messageText }}
+          </div>
+        </ng-container>
+        <ng-template #nolastmessage>
+          <div
+            class="message-avatar"
+            [ngStyle]="{ 'background-color': '#eee' }"
+          >
+            <div class="message-avatar-text">+</div>
+          </div>
+          <div class="timestamp"></div>
+          <div class="message-text">No messages</div>
+        </ng-template>
+      </div>
+    </mat-expansion-panel-header>
+    <div class="conversation-container">
+      <app-chat-box [messages]="mapItem.value"></app-chat-box>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

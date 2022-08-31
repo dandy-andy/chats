@@ -1,0 +1,32 @@
+<div class="message-container">
+  <div
+    class="message"
+    *ngFor="let message of messages; let idx = index"
+    [ngClass]="{ 'is-current-user': message.fromUserName === currentUser }"
+  >
+    <div
+      class="message-avatar"
+      [ngStyle]="getAvatarColors(message)"
+    >
+      <div class="message-avatar-text">
+        {{ getAvatarText(message) }}
+      </div>
+    </div>
+    <div class="message-bubble">
+      <div class="message-header">
+        <div class="person">
+          {{ message.fromUserName }}
+        </div>
+        <div class="timestamp">
+          {{ message.timestamp | date: 'E' }}
+          {{ message.timestamp | date: 'shortDate' }}
+          {{ message.timestamp | date: 'shortTime' }}
+        </div>
+      </div>
+      <div class="message-text">{{ message.messageText }}</div>
+    </div>
+  </div>
+</div>
+<div class="new-message-wrapper">
+    <input type="text" placeholder="Type a message">
+</div>
